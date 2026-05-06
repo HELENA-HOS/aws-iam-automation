@@ -1,0 +1,2 @@
+grupo;arn_politica_categoria;arn_politica_senha
+GPO-AWS-DataBase;arn:aws:iam::aws:policy/job-function/DatabaseAdministrator;arn:aws:iam::aws:policy/IAMUserChangePassword
