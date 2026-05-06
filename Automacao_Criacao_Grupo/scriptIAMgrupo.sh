@@ -22,7 +22,7 @@ command -v dos2unix >/dev/null || { echo "utilitário dos2unix não encontrado. 
 dos2unix "$INPUT"
 
 # Loop para ler cada linha do arquivo CSV e processar as informações
-while IFS= read -r line || [ -n "$line" ]; do
+tail -n +2 "$INPUT" | while IFS= read -r line || [ -n "$line" ]; do
     
     # Separa as informações usando o delimitador ';' e atribui a variáveis
     nome_grupo=$(echo "$line" | cut -d';' -f1)
@@ -39,7 +39,7 @@ while IFS= read -r line || [ -n "$line" ]; do
     # Insere a politica que permite que usuario do grupo troque sua propria senha
     aws iam attach-group-policy --group-name "$nome_grupo" --policy-arn "$arn_politica_senha"
 
-done < "$INPUT"
+done
 
 echo "Grupos criados com sucesso."
 
