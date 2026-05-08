@@ -29,15 +29,27 @@ tail -n +2 "$INPUT" | while IFS= read -r line || [ -n "$line" ]; do
     grupo=$(echo "$line" | cut -d';' -f2)
     senha=$(echo "$line" | cut -d';' -f3)
 
+# Valida existencia do nome do usuário
+    aws iam get-user --user-name "$usuario" >/dev/null 2>&1
+
 # Cria um usuário no IAM
+if [ $? -ne 0 ]; then
+    echo -e "\nCriando usuário $usuario..."
     aws iam create-user --user-name "$usuario"
 
 # Define uma senha e solicita a redefinição da senha no próximo login
+    echo -e "\nCriando senha do usuário $usuario..."
     aws iam create-login-profile --password-reset-required --user-name "$usuario" --password "$senha"
 
 # Adiciona o usuário ao grupo especificado
+    echo -e "\nAdicionando usuário $usuario ao grupo $grupo..."
     aws iam add-user-to-group --group-name "$grupo" --user-name "$usuario"
+
+else
+    echo -e "\nO usuário $usuario já existe. Ignorando criação."
+fi
+
 
 done
 
-echo "Usuários importados com sucesso."
+echo "Script executado com sucesso."

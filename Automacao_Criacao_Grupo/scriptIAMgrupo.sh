@@ -29,18 +29,33 @@ tail -n +2 "$INPUT" | while IFS= read -r line || [ -n "$line" ]; do
     arn_politica_especifica=$(echo "$line" | cut -d';' -f2)
     arn_politica_senha=$(echo "$line" | cut -d';' -f3)
     
+    # Valida existência do nome do grupo
+    aws iam get-group --group-name "$nome_grupo" >/dev/null 2>&1 
 
     # Cria o grupo de usuario no IAM
-    aws iam create-group --group-name "$nome_grupo"
+    if [ $? -ne 0 ]; then
+        echo -e "\nCriando grupo $nome_grupo..."
+
+        aws iam create-group --group-name "$nome_grupo"
+
+        echo -e "Grupo $nome_grupo criado com sucesso.\n"
 
     # Insere a politica referente a categoria do grupo criado
-    aws iam attach-group-policy --group-name "$nome_grupo" --policy-arn "$arn_politica_especifica"
+        echo -e "Anexando políticas ao grupo $nome_grupo...\n"
+        aws iam attach-group-policy --group-name "$nome_grupo" --policy-arn "$arn_politica_especifica"
+    
 
     # Insere a politica que permite que usuario do grupo troque sua propria senha
-    aws iam attach-group-policy --group-name "$nome_grupo" --policy-arn "$arn_politica_senha"
+        aws iam attach-group-policy --group-name "$nome_grupo" --policy-arn "$arn_politica_senha"
+
+    else
+        echo -e "\nO grupo $nome_grupo já existe. Ignorando criação."
+    fi
+
+
 
 done
 
-echo "Grupos criados com sucesso."
+echo "Script executado com sucesso."
 
 
