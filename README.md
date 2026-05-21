@@ -47,14 +47,15 @@ AWS-IAM-AUTOMATION/
 │
 ├── Automacao_Criacao_Grupo/
 │   ├── scriptIAMgrupo.sh
-│   ├── grupo.csv
-│   └── README.md
+│   └── grupo-exemplo.csv
+│   
 │
 ├── Automacao_Criacao_Usuarios/
 │   ├── scriptIAMusuario.sh
-│   └── usuarios.csv
+│   └── usuarios-exemplo.csv
 │
-└── .gitignore
+├── .gitignore
+└── README.md
 ```
 
 ## 📄 Estrutura dos arquivos CSV
