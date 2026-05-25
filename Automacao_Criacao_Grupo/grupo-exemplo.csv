@@ -1,3 +1,5 @@
 grupo;arn_politica_categoria;arn_politica_senha
 GPO-AWS-DataBase;arn:aws:iam::aws:policy/job-function/DatabaseAdministrator;arn:aws:iam::aws:policy/IAMUserChangePassword
 GPO-AWS-Linux;arn:aws:iam::aws:policy/AdministratorAccess;arn:aws:iam::aws:policy/IAMUserChangePassword
+GPO-AWS-Network;arn:aws:iam::aws:policy/job-function/NetworkAdministrator;arn:aws:iam::aws:policy/IAMUserChangePassword
+GPO-AWS-Developer;arn:aws:iam::aws:policy/AWSCodeBuildDeveloperAccess;arn:aws:iam::aws:policy/IAMUserChangePassword
