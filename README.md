@@ -14,6 +14,12 @@ Além da automação IAM, o projeto também foi executado em uma instância EC2 
 
 ---
 
+## 🧩 Arquitetura do projeto
+
+![Arquitetura AWS IAM Automation](images/arquitetura-ec2-iam-role.png)
+
+---
+
 ## 🚀 Funcionalidades
 
 ### ✔ Automação de grupos IAM
@@ -70,6 +76,9 @@ AWS-IAM-AUTOMATION/
 ├── Automacao_Criacao_Usuarios/
 │   ├── scriptIAMusuario.sh
 │   └── usuarios-exemplo.csv
+│
+├── images/
+│   └── arquitetura-ec2-iam-role.png
 │
 ├── .gitignore
 └── README.md
